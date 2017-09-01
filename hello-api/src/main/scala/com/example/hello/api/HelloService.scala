@@ -3,6 +3,7 @@ package com.example.hello.api
 import akka.{Done, NotUsed}
 import com.lightbend.lagom.scaladsl.api.broker.Topic
 import com.lightbend.lagom.scaladsl.api.broker.kafka.{KafkaProperties, PartitionKeyStrategy}
+import com.lightbend.lagom.scaladsl.api.transport.Method
 import com.lightbend.lagom.scaladsl.api.{Service, ServiceCall}
 import play.api.libs.json.{Format, Json}
 
@@ -56,8 +57,8 @@ trait HelloService extends Service {
     // @formatter:off
     named("hello")
       .withCalls(
-        pathCall("/api/hello/:id", hello _),
-        pathCall("/api/hello/:id", useGreeting _)
+        restCall(Method.GET,"/api/hello/:id", hello _),
+        restCall(Method.POST,"/api/hello/:id", useGreeting _)
       )
       .withTopics(
         topic(HelloService.TOPIC_NAME, greetingsTopic _)

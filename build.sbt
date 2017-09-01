@@ -6,6 +6,7 @@ scalaVersion in ThisBuild := "2.11.8"
 
 val macwire = "com.softwaremill.macwire" %% "macros" % "2.2.5" % "provided"
 val scalaTest = "org.scalatest" %% "scalatest" % "3.0.1" % Test
+val postgresSql =  "org.postgresql" % "postgresql" % "9.4.1212"
 
 lazy val `hello` = (project in file("."))
   .aggregate(`hello-api`, `hello-impl`, `hello-stream-api`, `hello-stream-impl`)
@@ -25,8 +26,13 @@ lazy val `hello-impl` = (project in file("hello-impl"))
       lagomScaladslKafkaBroker,
       lagomScaladslTestKit,
       lagomScaladslPersistenceJdbc,
+      javaJdbc,
       macwire,
-      scalaTest
+      scalaTest,
+      javaJdbc,
+      postgresSql
+//     "io.get-coursier" %% "coursier" % "1.0.0-RC3",
+//     "io.get-coursier" %% "coursier-cache" % "1.0.0-RC3"
     )
   )
   .settings(lagomForkedTestSettings: _*)

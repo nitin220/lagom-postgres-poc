@@ -22,7 +22,7 @@ class HelloLoader extends LagomApplicationLoader {
   override def loadDevMode(context: LagomApplicationContext): LagomApplication =
     new HelloApplication(context) with LagomDevModeComponents
 
-  override def describeService = Some(readDescriptor[HelloService])
+//  override def describeService = Some(readDescriptor[HelloService])
 }
 
 abstract class HelloApplication(context: LagomApplicationContext)
